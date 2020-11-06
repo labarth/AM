@@ -10,4 +10,4 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(rootPath, 'build', 'index.html'));
 });
 
-app.listen(2020);
+app.listen(process.env.PORT || 2020);
