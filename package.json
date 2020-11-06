@@ -16,6 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "nodemon server/index.mjs",
+    "server:deploy": "node server/index.mjs",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
