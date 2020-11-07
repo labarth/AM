@@ -1,13 +1,16 @@
 import path from 'path';
 import express from 'express';
+import routes from './routes/index';
+import { start } from './start';
 
-const rootPath = path.dirname('../');
+const rootPath = path.resolve(path.dirname(''));
 const app = express();
 
+// static files
 app.use(express.static(path.join(rootPath, 'build')));
 
-app.get('/', (req, res) => {
-	res.sendFile(path.join(rootPath, 'build', 'index.html'));
-});
+// routes
+routes(app);
 
-app.listen(process.env.PORT || 2020);
+// start app
+start(app);
