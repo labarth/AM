@@ -5,14 +5,54 @@ const Users = mongoose.model('Users', usersSchema);
 
 export class User {
   static async getUsers(req, res) {
-      const users = await Users.find();
+     try {
+       const users = await Users.find();
 
-      res.json(users);
+       res.json(users);
+     } catch (e) {
+       res.sendStatus(500);
+     }
   }
 
-  static async getUserById(req,res) {
-    const user = await Users.findOne({ _id: req.params.id });
+  static async getUserById(req, res) {
+    try {
+      const user = await Users.findOne({ _id: req.params.id });
 
-    res.json(user);
+      res.json(user);
+    } catch (e) {
+      res.sendStatus(500);
+    }
+  }
+
+  static async addUser(req, res) {
+    try {
+      const user = await Users.create(req.body);
+
+      res.json(user);
+    } catch (e) {
+      res.sendStatus(500);
+    }
+  }
+
+  static async removeUser(req, res) {
+    try {
+      await Users.deleteOne({ _id: req.body.id });
+
+      res.sendStatus(200);
+    } catch (e) {
+      res.sendStatus(500);
+    }
+  }
+
+  static async updateUser(req, res) {
+    try {
+      const { id, ...data } = req.body;
+      await Users.updateOne({ _id: id }, data);
+      const user = await Users.find({ _id: id });
+
+      res.json(user);
+    } catch (e) {
+      res.sendStatus(500);
+    }
   }
 }
