@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
-const usersSchema = new mongoose.Schema({ name: 'string', surname: 'string', email: 'string' });
+const usersSchema = new mongoose.Schema({
+  name: 'string',
+  surname: 'string',
+  email: 'string',
+  password: 'string',
+});
 const Users = mongoose.model('Users', usersSchema);
 
 export class User {
@@ -26,6 +31,7 @@ export class User {
 
   static async addUser(req, res) {
     try {
+      console.log(req.body, '@@');
       const user = await Users.create(req.body);
 
       res.json(user);

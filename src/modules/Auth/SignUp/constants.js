@@ -1,0 +1,1 @@
+export const SIGN_UP_PREFIX = 'sign_up';
