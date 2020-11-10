@@ -10,4 +10,7 @@ export default (app) => {
   app.put(`${API_KEY}/user`, User.updateUser);
   app.delete(`${API_KEY}/user`, User.removeUser);
 
+
+  app.post(`${API_KEY}/login`, User.login)
+
 }

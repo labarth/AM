@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import jsonwebtoken from 'jsonwebtoken';
 
 const usersSchema = new mongoose.Schema({
   name: 'string',
@@ -31,10 +33,12 @@ export class User {
 
   static async addUser(req, res) {
     try {
-      console.log(req.body, '@@');
-      const user = await Users.create(req.body);
+      const { password, ...userData } = req.body;
+      const saltRounds = 10;
+      const hashPassword = await bcrypt.hash(password, saltRounds);
+      await Users.create({ ...userData, password: hashPassword });
 
-      res.json(user);
+      res.sendStatus(200);
     } catch (e) {
       res.sendStatus(500);
     }
@@ -58,6 +62,25 @@ export class User {
 
       res.json(user);
     } catch (e) {
+      res.sendStatus(500);
+    }
+  }
+
+  static async login(req, res) {
+    try {
+      const { email, password } = req.body;
+      const user = await Users.findOne({ email });
+
+      if (user.password === password) {
+        return res.json(user);
+      }
+
+      throw ({ code: 400, message: 'incorrect login or password'});
+
+    } catch(e) {
+      if (e.code === 400) {
+        return res.json(e.message);
+      }
       res.sendStatus(500);
     }
   }
