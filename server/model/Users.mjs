@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-import jsonwebtoken from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
+import { privateKey } from '../config';
 
 const usersSchema = new mongoose.Schema({
   name: 'string',
@@ -70,9 +71,23 @@ export class User {
     try {
       const { email, password } = req.body;
       const user = await Users.findOne({ email });
+      const isCompare = await bcrypt.compare(password, user.password);
 
-      if (user.password === password) {
-        return res.json(user);
+      if (isCompare) {
+        const { name, surname, email, _id } = user;
+        const token = await jwt.sign({ name, surname, email, _id}, privateKey, { expiresIn: 120 });
+
+        const response = {
+          user: {
+            _id,
+            name,
+            surname,
+            email,
+          },
+          token,
+        }
+
+        return res.json(response);
       }
 
       throw ({ code: 400, message: 'incorrect login or password'});

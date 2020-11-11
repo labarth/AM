@@ -1,0 +1,1 @@
+export const privateKey = '@$53KEY^^73sgj';

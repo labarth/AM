@@ -4,7 +4,7 @@ import { createUserError, createUserLoading } from './actions';
 
 const defaultState = {
   loading: false,
-  error: null,
+  error: '',
 }
 export const signUpReducer = createReducer({
   [createUserLoading]: produce((state, loading) => {

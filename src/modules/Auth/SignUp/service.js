@@ -1,4 +1,3 @@
-import axios from 'axios';
-import { API_URL } from 'modules/Main/constants';
+import { apiService } from '../../Main/api';
 
-export const createUserService = (user) => axios.post(`http://localhost:2020/api/user`, user);
+export const createUserService = (user) => apiService.post(`api/user`, user);
