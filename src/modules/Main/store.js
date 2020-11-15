@@ -1,15 +1,21 @@
+import { createBrowserHistory } from 'history'
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-import reducer from 'modules/Main/reducer';
-import { signUpSagaWatcher } from '../Auth/SignUp/saga';
+import { routerMiddleware } from 'connected-react-router'
+import createRootReducer from 'modules/Main/reducer';
+import rootSaga from './saga';
 
 const sagaMiddleware = createSagaMiddleware();
+export const history = createBrowserHistory();
 
-const store = createStore(reducer, composeWithDevTools(
-  applyMiddleware(sagaMiddleware),
+const store = createStore(createRootReducer(history), composeWithDevTools(
+  applyMiddleware(
+    sagaMiddleware,
+    routerMiddleware(history),
+  ),
 ));
 
-sagaMiddleware.run(signUpSagaWatcher);
+sagaMiddleware.run(rootSaga);
 
 export { store };

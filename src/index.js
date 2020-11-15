@@ -1,10 +1,10 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux';
 import 'antd/dist/antd.css';
-import { store } from './modules/Main/store';
+import { store, history } from './modules/Main/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -25,12 +25,12 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 ReactDOM.render(
-    <Router>
-      <GlobalStyles />
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </Router>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+    <GlobalStyles />
+    <App />
+    </ConnectedRouter>
+  </Provider>
   ,
   document.getElementById('root')
 );

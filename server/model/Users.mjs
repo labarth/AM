@@ -71,9 +71,15 @@ export class User {
     try {
       const { email, password } = req.body;
       const user = await Users.findOne({ email });
+
+      if (!user) {
+        throw ({ code: 400, message: 'incorrect login or password'});
+      }
+
+      console.log(password, user, '@@@');
       const isCompare = await bcrypt.compare(password, user.password);
 
-      if (isCompare) {
+      if (isCompare && user) {
         const { name, surname, email, _id } = user;
         const token = await jwt.sign({ name, surname, email, _id}, privateKey, { expiresIn: 120 });
 
@@ -93,6 +99,7 @@ export class User {
       throw ({ code: 400, message: 'incorrect login or password'});
 
     } catch(e) {
+      console.log(e, '@@');
       if (e.code === 400) {
         return res.json(e.message);
       }
