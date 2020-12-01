@@ -76,7 +76,6 @@ export class User {
         throw ({ code: 400, message: 'incorrect login or password'});
       }
 
-      console.log(password, user, '@@@');
       const isCompare = await bcrypt.compare(password, user.password);
 
       if (isCompare && user) {
@@ -99,7 +98,6 @@ export class User {
       throw ({ code: 400, message: 'incorrect login or password'});
 
     } catch(e) {
-      console.log(e, '@@');
       if (e.code === 400) {
         return res.json(e.message);
       }
