@@ -1,4 +1,5 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import { createUser, createUserError, createUserLoading } from './actions';
 import { createUserService } from './service';
 
@@ -10,7 +11,7 @@ function* signUpSaga({ payload }) {
     const { status } = yield call(createUserService, userData);
 
     if (status === 200) {
-      console.log('redirect to login page!!');
+      yield put(push('/login'));
     }
 
     yield put(createUserLoading(false));

@@ -7,5 +7,5 @@ const defaultState = {
 }
 
 export default createReducer({
-  [applicationLoading]: produce((state, loading) => { console.log(loading); state.loading = loading }),
+  [applicationLoading]: produce((state, loading) => { state.loading = loading }),
 }, defaultState);
