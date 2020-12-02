@@ -1,5 +1,5 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { isAuthSaga } from 'modules/Auth/AuthCheck/saga';
+import { isAuthSaga } from 'modules/auth/AuthCheck/saga';
 import { applicationLoading, applicationRun } from './actions';
 
 

@@ -1,7 +1,7 @@
 import { fork, all } from 'redux-saga/effects';
-import { signUpSagaWatcher } from '../Auth/SignUp/saga';
-import { loginSagaWatcher } from '../Auth/Login/saga';
-import { applicationRunSagaWatcher } from '../common/Application/saga';
+import { signUpSagaWatcher } from 'modules/auth/SignUp/saga';
+import { loginSagaWatcher } from 'modules/auth/Login/saga';
+import { applicationRunSagaWatcher } from 'modules/common/Application/saga';
 
 export default function* rootSaga() {
   yield all([

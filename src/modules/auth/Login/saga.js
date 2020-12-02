@@ -1,6 +1,7 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 import { push } from 'connected-react-router'
 import { setUser } from 'modules/common/User/actions';
+import { setToken } from 'utils/authToken';
 import { loginRequest, loginError, loginLoading } from './actions';
 import { loginService } from './service';
 
@@ -9,7 +10,7 @@ function* loginSaga({ payload: userData }) {
     yield put(loginLoading(true));
     const  { data: { user, token } }  = yield call(loginService, userData);
 
-    localStorage.setItem('token', token);
+    setToken(token);
 
     if (user)  {
       yield put(push('/'));
