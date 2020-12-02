@@ -1,19 +1,20 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-import { runApplication } from '../../Main/actions';
+import { setUser } from 'modules/common/User/actions';
+import { applicationRun } from 'modules/common/Application/actions';
 import { isAuthService } from './service';
 
-function *isAuthSaga() {
-  const token = localStorage.getItem('token');
+export function *isAuthSaga() {
+  try {
+    const token = localStorage.getItem('token');
 
-  if (!token) {
+    if (!token) {
+      yield put(push('/login'));
+    } else {
+      const { data: user } = yield call(isAuthService, { token });
+      yield put(setUser(user));
+    }
+  } catch (e) {
     yield put(push('/login'));
-  } else {
-    yield call(isAuthService, { token });
   }
-}
-
-
-export function* isAuthSagaWatcher() {
-  yield takeLatest(runApplication, isAuthSaga);
 }

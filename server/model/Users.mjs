@@ -80,7 +80,7 @@ export class User {
 
       if (isCompare && user) {
         const { name, surname, email, _id } = user;
-        const token = await jwt.sign({ name, surname, email, _id}, privateKey, { expiresIn: 120 });
+        const token = await jwt.sign({ name, surname, email, _id}, privateKey, { expiresIn: '10h' });
 
         const response = {
           user: {

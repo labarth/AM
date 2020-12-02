@@ -1,10 +1,12 @@
-import { fork } from 'redux-saga/effects';
+import { fork, all } from 'redux-saga/effects';
 import { signUpSagaWatcher } from '../Auth/SignUp/saga';
 import { loginSagaWatcher } from '../Auth/Login/saga';
-import { isAuthSagaWatcher } from '../Auth/AuthCheck/saga';
+import { applicationRunSagaWatcher } from '../common/Application/saga';
 
-export default function* watchAll() {
-  yield fork(loginSagaWatcher);
-  yield fork(signUpSagaWatcher);
-  yield fork(isAuthSagaWatcher);
+export default function* rootSaga() {
+  yield all([
+    fork(loginSagaWatcher),
+    fork(signUpSagaWatcher),
+    fork(applicationRunSagaWatcher),
+  ]);
 };
