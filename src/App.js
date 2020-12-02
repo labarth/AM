@@ -20,7 +20,7 @@ const App = () => {
     loading ? <PageLoading /> : (
     <>
       <Route component={Home}  path="/" exact />
-      <Route component={SignUp} path="/singup" exact />
+      <Route component={SignUp} path="/signup" exact />
       <Route component={Login} path="/login" exact />
     </>
     )
