@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { createReducer } from 'redux-act';
-import { loginLoading, loginError } from './actions';
+import { loginLoading, loginError } from 'modules/auth/containers/Login/actions';
 
 const defaultState = {
   loading: false,

@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { createReducer } from 'redux-act';
-import { setUser } from './actions';
+import { setUser } from 'modules/user/actions';
 
 const defaultState = null;
 

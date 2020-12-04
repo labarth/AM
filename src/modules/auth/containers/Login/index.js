@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { LoginPage } from './components/LoginPage';
-import { loginRequest } from './actions';
+import { LoginPage } from 'modules/auth/containers/Login/components/LoginPage';
+import { loginRequest } from 'modules/auth/containers/Login/actions';
 
 export const Login = () => {
   const dispatch = useDispatch();

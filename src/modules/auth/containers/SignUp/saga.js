@@ -1,7 +1,7 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-import { createUser, createUserError, createUserLoading } from './actions';
-import { createUserService } from './service';
+import { createUser, createUserError, createUserLoading } from 'modules/auth/containers/SignUp/actions';
+import { createUserService } from 'modules/auth/containers/SignUp/service';
 
 function* signUpSaga({ payload }) {
   try {
@@ -11,7 +11,7 @@ function* signUpSaga({ payload }) {
     const { status } = yield call(createUserService, userData);
 
     if (status === 200) {
-      yield put(push('/login'));
+      yield put(push('/Login'));
     }
 
     yield put(createUserLoading(false));

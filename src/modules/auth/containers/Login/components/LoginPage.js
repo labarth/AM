@@ -1,5 +1,5 @@
 import { Form, Input, Button } from 'antd';
-import * as Styled from './Styled';
+import * as Styled from 'modules/auth/containers/Login/components/Styled';
 
 const layout = {
   labelCol: { span: 8 },

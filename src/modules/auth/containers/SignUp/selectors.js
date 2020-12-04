@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { authState } from '../selectors';
+import { authState } from 'modules/auth/selectors';
 
 export const signUpSelector = createSelector(
   authState,

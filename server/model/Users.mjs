@@ -73,7 +73,7 @@ export class User {
       const user = await Users.findOne({ email });
 
       if (!user) {
-        throw ({ code: 400, message: 'incorrect login or password'});
+        throw ({ code: 400, message: 'incorrect Login or password'});
       }
 
       const isCompare = await bcrypt.compare(password, user.password);
@@ -95,7 +95,7 @@ export class User {
         return res.json(response);
       }
 
-      throw ({ code: 400, message: 'incorrect login or password'});
+      throw ({ code: 400, message: 'incorrect Login or password'});
 
     } catch(e) {
       if (e.code === 400) {

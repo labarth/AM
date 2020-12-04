@@ -1,6 +1,6 @@
 import { Form, Input, Button } from 'antd';
 import PropTypes from 'prop-types';
-import * as Styled from './Styled';
+import * as Styled from 'modules/auth/containers/SignUp/components/Styled';
 
 const layout = {
   labelCol: { span: 8 },

@@ -1,9 +1,9 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 import { push } from 'connected-react-router'
-import { setUser } from 'modules/common/User/actions';
+import { setUser } from 'modules/user/actions';
 import { setToken } from 'utils/authToken';
-import { loginRequest, loginError, loginLoading } from './actions';
-import { loginService } from './service';
+import { loginRequest, loginError, loginLoading } from 'modules/auth/containers/Login/actions';
+import { loginService } from 'modules/auth/containers/Login/service';
 
 function* loginSaga({ payload: userData }) {
   try {

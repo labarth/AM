@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { createReducer } from 'redux-act';
-import { applicationLoading } from './actions';
+import { applicationLoading } from 'modules/application/actions';
 
 const defaultState = {
   loading: false,

@@ -1,9 +1,9 @@
 import { call, put, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-import { setUser } from 'modules/common/User/actions';
+import { setUser } from 'modules/user/actions';
 import { routerLocationSelector } from 'modules/main/selectors';
 import { getToken } from 'utils/authToken';
-import { isAuthService } from './service';
+import { isAuthService } from 'modules/auth/service';
 
 export function *isAuthSaga() {
   const location = yield select(routerLocationSelector);
